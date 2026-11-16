@@ -14,14 +14,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/palfilo.css?v=10">
-  <link rel="stylesheet" href="css/linktree.css?v=10">
+  <link rel="stylesheet" href="css/palfilo.css?v=11">
+  <link rel="stylesheet" href="css/linktree.css?v=11">
 </head>
 <body>
   <main class="tree">
+    <div class="col col--izq">
     <img class="tree__logo" src="img/logo-principal.png" alt="Pa'l Filo, Colombian street food" width="720" height="596">
 
-    <p class="tree__bio">Colombian Caribbean street food 🇨🇴<br><span class="es">Armada a tu gusto, con harta salsa · San José</span><span class="en">Built your way, extra saucy · San José</span></p>
+    <p class="tree__bio">Colombian Caribbean street food<br><span class="es">Armada a tu gusto, con harta salsa · San José</span><span class="en">Built your way, extra saucy · San José</span></p>
 
     <div class="fila-estado">
     <button class="estado" type="button" aria-expanded="false" aria-controls="estadoHorario">
@@ -34,7 +35,17 @@
     </button>
     <button class="compartir" type="button" data-compartir aria-label="Compartir / Share"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></button>
     </div>
+    <section class="grupo grupo--redes" aria-labelledby="g-redes">
+      <h2 class="sr" id="g-redes">Redes / Social</h2>
+      <ul class="redes" role="list">
+        <li><a class="red" href="https://www.instagram.com/tazmaniafoodoficial/" target="_blank" rel="noopener" data-enlace="instagram"><img src="img/redes/instagram.png" alt="" width="28" height="28"><span>Instagram</span></a></li>
+        <li><a class="red" href="https://www.facebook.com/p/Tazmania-Food-61559588588174/" target="_blank" rel="noopener" data-enlace="facebook"><img src="img/redes/facebook.png" alt="" width="28" height="28"><span>Facebook</span></a></li>
+        <li><a class="red" href="#" data-enlace="tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.4 2.2 1.8 3.6 4 3.8v3.1a7 7 0 0 1-4-1.3v6.2A6.2 6.2 0 1 1 10.4 8.6v3.2a3 3 0 1 0 3 3V3h3.2Z"/></svg><span>TikTok</span></a></li>
+      </ul>
+    </section>
+    </div>
 
+    <div class="col col--der">
     <!-- La acción que vende: una sola, en mango, con la pizza asomándose -->
     <a class="destacado" href="https://tazmaniafood.github.io/Frontend_consumidor/" data-enlace="pedir">
       <span class="destacado__tx">
@@ -43,7 +54,6 @@
         <small><span class="es">Mejor precio y sin comisión</span><span class="en">Best price, no app fees</span></small>
       </span>
       <span class="destacado__foto" aria-hidden="true"><img src="img/hawaiana.webp" alt="" width="600" height="600"></span>
-      <span class="destacado__flecha" aria-hidden="true">›</span>
     </a>
 
     <section class="grupo grupo--pedir" aria-labelledby="g-pedir">
@@ -66,20 +76,11 @@
         </a></li>
       </ul>
     </section>
-
-    <section class="grupo grupo--redes" aria-labelledby="g-redes">
-      <h2 class="sr" id="g-redes">Redes / Social</h2>
-      <ul class="redes" role="list">
-        <li><a class="red" href="https://www.instagram.com/tazmaniafoodoficial/" target="_blank" rel="noopener" data-enlace="instagram"><img src="img/redes/instagram.png" alt="" width="28" height="28"><span>Instagram</span></a></li>
-        <li><a class="red" href="https://www.facebook.com/p/Tazmania-Food-61559588588174/" target="_blank" rel="noopener" data-enlace="facebook"><img src="img/redes/facebook.png" alt="" width="28" height="28"><span>Facebook</span></a></li>
-        <li><a class="red" href="#" data-enlace="tiktok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.4 2.2 1.8 3.6 4 3.8v3.1a7 7 0 0 1-4-1.3v6.2A6.2 6.2 0 1 1 10.4 8.6v3.2a3 3 0 1 0 3 3V3h3.2Z"/></svg><span>TikTok</span></a></li>
-      </ul>
-    </section>
-
+    </div>
   </main>
 
   <footer class="pie-tree">Pa'l Filo · San José, California · <span id="anio"></span></footer>
   <div class="aviso" id="aviso" role="status"></div>
-  <script src="js/linktree.js?v=10"></script>
+  <script src="js/linktree.js?v=11"></script>
 </body>
 </html>

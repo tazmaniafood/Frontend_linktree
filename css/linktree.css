@@ -192,3 +192,39 @@ html[data-abierto="no"] .estado { --tubo: var(--tomate); }
   .destacado { align-self: end; }
   .grupo--pedir { align-self: start !important; }
 }
+
+/* ===== v11: columnas envolventes. De pie no existen (display: contents) ===== */
+.col { display: contents; }
+.grupo--redes { order: 9; }
+.col > * { animation: sube 0.5s var(--ease) 0.8s both; }
+.col > .tree__logo { animation: logo 0.7s var(--rebote) 0.5s both; }
+/* Pizza más grande, cortada por el borde; sin flecha */
+.destacado__flecha { display: none; }
+.destacado { padding-right: 34%; }
+.destacado__foto { width: auto; height: 230%; max-height: none; aspect-ratio: 1; right: -14%; }
+@media not ((orientation: landscape) and (max-height: 560px)) { .destacado { padding-right: 34%; grid-template-columns: 1fr; } .destacado__foto { width: auto; height: 210%; right: -12%; } }
+
+/* Acostado: dos columnas de la misma altura; a la izquierda las redes rellenan, a la derecha los cuatro botones iguales */
+@media (orientation: landscape) and (max-height: 560px) {
+  .tree { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-areas: none; grid-template-rows: none; align-items: stretch; align-content: center; height: 100dvh; }
+  .col { display: flex; flex-direction: column; justify-content: center; gap: clamp(8px, 2.4vh, 14px); min-width: 0; }
+  .col--izq { align-items: center; }
+  .col > * { grid-area: auto !important; }
+  .tree__logo { height: clamp(70px, 22vh, 130px); }
+  .tree__bio br + span { display: inline !important; }
+  .tree__bio { font-size: clamp(0.78rem, 3.4vh, 0.95rem); }
+  .grupo--redes { flex: 1; width: 100%; display: grid; height: auto; }
+  .grupo--redes .redes { height: 100%; min-height: 0; }
+  .red { height: 100%; padding-block: 4px; }
+  .col--der .destacado, .col--der .grupo--pedir .enlace, .tree > .col--der .grupo--pedir .enlace { flex: none; height: auto; min-height: 0; }
+  .col--der { gap: clamp(6px, 1.8vh, 12px); }
+  .col--der .destacado { flex: 1; }
+  .col--der .grupo--pedir { flex: 3; height: auto !important; display: grid; }
+  .col--der .grupo--pedir .lista { height: 100%; grid-auto-rows: 1fr; gap: clamp(6px, 1.8vh, 12px); }
+  .col--der .grupo--pedir .enlace { height: 100% !important; }
+  .destacado { padding-right: 34%; align-self: stretch !important; }
+}
+@media (orientation: landscape) and (max-height: 560px) {
+  .col { justify-self: stretch; width: 100%; }
+  .destacado { grid-template-columns: 1fr; }
+}
