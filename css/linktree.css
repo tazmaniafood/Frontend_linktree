@@ -260,3 +260,6 @@ html[data-abierto="no"] .estado { --tubo: var(--tomate); }
 }
 @media (orientation: landscape) and (max-height: 560px) and (max-width: 780px) { .red { font-size: 0.66rem; letter-spacing: 0.01em; } .col--izq { padding-inline: 4px; } }
 @media (orientation: landscape) and (max-height: 560px) { .tree__bio { white-space: nowrap; font-size: clamp(0.62rem, 1.7vw, 0.95rem) !important; line-height: 1.35; } }
+@media (orientation: landscape) and (min-height: 400px) and (max-height: 560px) { .tree { align-content: center; } .col { min-height: 76dvh; } .col--izq { justify-content: space-evenly; } .col--der { gap: clamp(10px, 2.6vh, 16px); } .col--der .grupo--pedir .lista { gap: clamp(10px, 2.6vh, 16px); } }
+@media (orientation: landscape) and (min-height: 400px) and (max-height: 560px) { .col--izq { justify-content: space-between; } .grupo--redes { flex: none; } .red { height: auto; padding-block: clamp(10px, 2.4vh, 16px); } }
+@media (orientation: landscape) and (max-height: 560px) { .tree__pic { display: block; line-height: 0; } .tree__pic source { display: none; } }
