@@ -14,11 +14,11 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
 @keyframes baja { from { translate: 0 -100%; } }
 
 /* ---------- Columna ---------- */
-.tree { flex: none; padding-bottom: 28px; --g: clamp(6px, 1.6vh, 16px); position: relative; z-index: 1; width: min(100% - 2 * var(--e-4), 460px); margin: 0 auto; padding: var(--g) 0; display: grid; justify-items: center; gap: var(--g); text-align: center; }
+.tree { flex: none; height: 100dvh; grid-template-rows: auto auto auto minmax(110px, 1fr) auto auto; align-content: stretch; padding-bottom: 44px; --g: clamp(6px, 1.6vh, 16px); position: relative; z-index: 1; width: min(100% - 2 * var(--e-4), 460px); margin: 0 auto; padding: var(--g) 0 44px; display: grid; justify-items: center; gap: var(--g); text-align: center; }
 .tree > * { animation: sube 0.5s var(--ease) both; }
 .tree > :nth-child(1) { animation: logo 0.7s var(--rebote) 0.5s both; }
 .tree > :nth-child(2) { animation-delay: 0.75s; } .tree > :nth-child(3) { animation-delay: 0.82s; } .tree > :nth-child(4) { animation-delay: 0.9s; }
-.tree > :nth-child(5) { animation-delay: 0.98s; } .tree > :nth-child(6) { animation-delay: 1.06s; }
+.tree > :nth-child(5) { animation-delay: 0.98s; } .tree > :nth-child(6) { animation-delay: 1.06s; } .tree > :nth-child(7) { animation-delay: 1.14s; }
 @keyframes sube { from { opacity: 0; translate: 0 14px; } }
 @keyframes logo { from { opacity: 0; scale: 0.7; translate: 0 -20px; } }
 .tree__logo { width: auto; height: clamp(64px, 15vh, 170px); filter: drop-shadow(0 12px 18px rgb(13 9 25 / 0.75)); }
@@ -49,6 +49,25 @@ html[data-abierto="no"] .estado { --tubo: var(--tomate); }
 .estado__dias .hoy { background: var(--mango); color: var(--noche); border-color: var(--noche); }
 .estado__horas { font: 400 1.2rem/1 var(--f-letrero); color: var(--mango); }
 .estado__zona { font: 700 0.75rem/1.2 var(--f-texto); color: var(--texto-2); }
+
+/* ---------- La acción que vende ---------- */
+.destacado {
+  position: relative; width: 100%; height: 100%; display: grid; grid-template-columns: 1fr 120px; align-items: center; gap: var(--e-2); min-height: 0;
+  padding: var(--e-4) var(--e-4) var(--e-4) var(--e-5); text-align: left; text-decoration: none; color: var(--noche); overflow: hidden;
+  background: radial-gradient(rgb(255 241 220 / 0.3) 2px, transparent 2.5px) 0 0 / 14px 14px, var(--mango);
+  border: var(--borde); border-radius: var(--r-4); box-shadow: 6px 8px 0 var(--uva); transition: translate 0.15s var(--ease), box-shadow 0.15s;
+}
+.destacado:hover { translate: 0 -3px; box-shadow: 7px 11px 0 var(--uva); }
+.destacado:active { translate: 4px 5px; box-shadow: 0 0 0 var(--uva); }
+.destacado__tx { position: relative; z-index: 1; display: grid; justify-items: start; gap: var(--e-2); }
+.destacado__sello { background: var(--tomate); color: var(--crema); border: 2px solid var(--noche); rotate: -3deg; }
+.destacado .letrero { --n: var(--crema); font-size: clamp(1.4rem, min(4.4vh, 1.2rem + 2vw), 2.3rem); }
+.destacado small { font-weight: 800; font-size: var(--t-0); max-width: 24ch; }
+.destacado__foto { position: absolute; right: -46px; top: 50%; translate: 0 -50%; width: min(190px, 92%); aspect-ratio: 1; height: auto; max-height: 120%; border-radius: 50%; padding: 6px; background: var(--noche); box-shadow: 0 0 0 4px var(--crema); }
+.destacado__foto img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; animation: gira 40s linear infinite; }
+@keyframes gira { to { rotate: 360deg; } }
+.destacado__flecha { position: absolute; right: 14px; bottom: 12px; z-index: 2; display: grid; place-items: center; width: 40px; height: 40px; padding-bottom: 3px; border-radius: 50%; background: var(--crema); border: var(--borde); font: 900 1.5rem/1 var(--f-texto); transition: translate 0.2s var(--ease); }
+.destacado:hover .destacado__flecha { translate: 4px 0; }
 
 /* ---------- Grupos ---------- */
 .grupo { width: 100%; display: grid; gap: var(--e-3); }
@@ -98,4 +117,5 @@ html[data-abierto="no"] .estado { --tubo: var(--tomate); }
 .aviso.on { translate: -50% 0; }
 
 @media (max-height: 620px) { .enlace__tx small { display: none; } .tree__bio br + span { display: none; } }
-@media (prefers-reduced-motion: reduce) { body::before, .tree > *, .estado__luz { animation: none; } }
+@media (prefers-reduced-motion: reduce) { body::before, .tree > *, .estado__luz, .destacado__foto img { animation: none; } }
+@media (max-height: 700px) { .destacado small { display: none; } }
