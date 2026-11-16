@@ -128,16 +128,23 @@ html[data-abierto="no"] .estado { --tubo: var(--tomate); }
 .red { padding-block: clamp(8px, 1.8vh, 18px); }
 
 @media (max-height: 560px) { .destacado small { display: none; } }
-/* Celular acostado: dos columnas. Izquierda la marca y las redes, derecha la página web y los canales */
+/* Celular acostado: dos columnas centradas en alto. Derecha: la página web y los canales con
+   su altura natural. Izquierda: logo, descripción y estado; las redes crecen para quedar parejas. */
 @media (orientation: landscape) and (max-height: 560px) {
-  .tree { width: min(100% - 2 * var(--e-5), 900px); grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); column-gap: var(--e-6);
-    grid-template-rows: auto auto minmax(0, 1fr) auto; grid-template-areas: "logo dest" "bio dest" "estado pedir" "redes pedir"; align-items: center; }
-  .tree__logo { grid-area: logo; height: clamp(54px, 17vh, 110px); }
+  .tree { height: 100dvh; width: min(100% - 2 * var(--e-5), 900px); grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); column-gap: var(--e-6); row-gap: var(--e-3);
+    grid-template-rows: auto auto auto auto; grid-template-areas: "logo dest" "bio dest" "estado pedir" "redes pedir"; align-content: center; align-items: center; padding-bottom: 34px; }
+  .tree__logo { grid-area: logo; height: clamp(54px, 15vh, 96px); }
   .tree__bio { grid-area: bio; }
-  .fila-estado { grid-area: estado; align-self: start; }
-  .destacado { grid-area: dest; max-height: none; height: 100%; }
-  .grupo--pedir { grid-area: pedir; }
-  .grupo--redes { grid-area: redes; align-self: end; }
-  .enlace__tx small { display: none; }
   .tree__bio br + span { display: none; }
+  .fila-estado { grid-area: estado; }
+  .estado__fila { white-space: nowrap; font-size: 0.8rem; }
+  .destacado { grid-area: dest; height: 100%; max-height: none; min-height: 84px; }
+  .grupo--pedir { grid-area: pedir; height: auto; align-self: stretch; }
+  .grupo--pedir .lista { height: auto; grid-auto-rows: auto; }
+  .grupo--pedir .enlace { height: auto; padding-block: clamp(6px, 1.6vh, 10px); }
+  .enlace__tx small { display: none; }
+  .grupo--redes { grid-area: redes; align-self: stretch; height: 100%; }
+  .grupo--redes .redes { height: 100%; }
+  .red { height: 100%; align-content: center; }
+}
 }
