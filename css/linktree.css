@@ -147,4 +147,9 @@ html[data-abierto="no"] .estado { --tubo: var(--tomate); }
   .grupo--redes .redes { height: 100%; }
   .red { height: 100%; align-content: center; }
 }
+/* Acostado con más alto disponible: los tres canales más altos, todos iguales */
+@media (orientation: landscape) and (min-height: 430px) and (max-height: 560px) {
+  .grupo--pedir .lista { grid-auto-rows: 1fr; }
+  .grupo--pedir .enlace { min-height: clamp(56px, 13vh, 74px); }
+  .destacado { min-height: clamp(96px, 22vh, 130px); }
 }
