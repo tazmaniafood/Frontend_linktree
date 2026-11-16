@@ -164,9 +164,31 @@ html[data-abierto="no"] .estado { --tubo: var(--tomate); }
   .destacado__sello { font-size: 0.62rem; padding: 0.3rem 0.5rem 0.25rem; }
   .destacado .letrero { font-size: clamp(1.1rem, min(2.6vh, 5.4vw), 1.5rem); white-space: nowrap; }
   .destacado small { display: none; }
-  .destacado__foto { width: 130px; right: -40px; }
-  .destacado__flecha { width: 34px; height: 34px; right: 10px; bottom: 50%; translate: 0 50%; font-size: 1.2rem; }
+  .destacado { grid-template-columns: 1fr auto; padding-right: 110px; }
+  .destacado__foto { width: 120px; right: -42px; }
+  .destacado__flecha { width: 34px; height: 34px; right: 88px; bottom: 50%; translate: 0 50%; font-size: 1.2rem; }
   .red { padding-block: clamp(10px, 1.8vh, 16px); }
 }
 
 @media (max-width: 360px) { .estado__fila { white-space: nowrap; font-size: 0.78rem; } }
+
+/* Acostado: los cuatro (página web y canales) del mismo alto; el logo más grande; flecha fuera de la pizza */
+@media (orientation: landscape) and (max-height: 560px) {
+  .tree { grid-template-areas: "logo dest" "bio pedir" "estado pedir" "redes pedir"; }
+  .tree__logo { height: clamp(80px, 26vh, 150px); }
+  .destacado, .grupo--pedir .enlace { height: clamp(46px, 13vh, 70px); min-height: 0; max-height: none; }
+  .grupo--pedir .lista { grid-auto-rows: auto; }
+  .destacado { grid-template-columns: 1fr auto; padding: 0 100px 0 var(--e-4); }
+  .destacado__tx { gap: 3px; }
+  .destacado__sello { font-size: 0.6rem; padding: 0.25rem 0.45rem 0.2rem; }
+  .destacado .letrero { font-size: clamp(1rem, 4.6vh, 1.4rem); white-space: nowrap; }
+  .destacado small { display: none; }
+  .destacado__foto { width: 110px; right: -38px; }
+  .destacado__flecha { width: 30px; height: 30px; right: 80px; bottom: 50%; translate: 0 50%; font-size: 1.1rem; }
+}
+@media (orientation: landscape) and (max-height: 560px) {
+  .tree > .grupo--pedir .enlace { height: clamp(46px, 13vh, 70px); }
+  .tree > .grupo--pedir .lista { grid-auto-rows: auto; }
+  .destacado { align-self: end; }
+  .grupo--pedir { align-self: start !important; }
+}
