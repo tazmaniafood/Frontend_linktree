@@ -248,3 +248,14 @@ html[data-abierto="no"] .estado { --tubo: var(--tomate); }
   .enlace__tx b { font-size: 0.9rem; }
   .pie-tree { bottom: 4px; font-size: 0.7rem; }
 }
+/* Acostado: logo más chico y más aire en la columna izquierda */
+@media (orientation: landscape) and (max-height: 560px) {
+  .tree { width: min(100% - 2 * var(--e-6), 920px); column-gap: clamp(28px, 5vw, 56px); }
+  .col--izq { padding-inline: clamp(8px, 2.4vw, 28px); gap: clamp(8px, 2.6vh, 16px); }
+  .tree__logo { width: min(100%, 210px); max-height: 17vh; }
+}
+@media (orientation: landscape) and (max-height: 340px) {
+  .tree__logo { width: min(100%, 170px); max-height: 15vh; }
+  .col--izq { gap: 8px; }
+}
+@media (orientation: landscape) and (max-height: 560px) and (max-width: 780px) { .red { font-size: 0.66rem; letter-spacing: 0.01em; } .col--izq { padding-inline: 4px; } }
