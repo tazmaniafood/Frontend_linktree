@@ -1,0 +1,419 @@
+/* =====================================================================
+   Pa'l Filo · Sistema de diseño
+   Fuente de verdad: Guía de marca (tazmaniafood.github.io/branding-TAZ)
+   Solo tokens aprobados. Las superficies se mezclan de noche + uva + crema.
+   Reglas: ninguna letra brilla; el brillo vive solo en formas e imágenes
+   de ambiente. Placas = borde noche + sombra uva en bloque.
+   ===================================================================== */
+@layer tokens, reset, base, layout, components, utilities;
+
+@layer tokens {
+  :root {
+    color-scheme: dark;
+    /* Paleta */
+    --noche: #0D0919;
+    --uva: #5B0DA8;
+    --crema: #FFF1DC;
+    --mango: #FFB700;
+    --tomate: #FF2440;
+    --cian: #00B9FF;
+    --lima: #7CFF6B;
+
+    /* Superficies y texto: mezclas de la paleta */
+    --sup-1: color-mix(in srgb, var(--uva) 14%, var(--noche));
+    --sup-2: color-mix(in srgb, var(--uva) 24%, var(--noche));
+    --sup-3: color-mix(in srgb, var(--uva) 34%, var(--noche));
+    --linea: rgb(255 241 220 / 0.14);
+    --linea-fuerte: rgb(255 241 220 / 0.32);
+    --texto: var(--crema);
+    --texto-2: color-mix(in srgb, var(--crema) 72%, var(--noche));
+    --texto-3: color-mix(in srgb, var(--crema) 52%, var(--noche));
+
+    /* Letras */
+    --f-letrero: 'Lilita One', system-ui, sans-serif;
+    --f-texto: 'Nunito', system-ui, sans-serif;
+    --t-0: clamp(0.8rem, 0.78rem + 0.1vw, 0.86rem);
+    --t-1: clamp(0.94rem, 0.9rem + 0.15vw, 1rem);
+    --t-2: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+    --t-3: clamp(1.5rem, 1.2rem + 1.2vw, 2.1rem);
+    --t-4: clamp(2.2rem, 1.6rem + 2.6vw, 3.6rem);
+    --t-5: clamp(2.8rem, 1.8rem + 4.6vw, 5.6rem);
+
+    /* Espacios */
+    --e-1: 0.25rem; --e-2: 0.5rem; --e-3: 0.75rem; --e-4: 1rem;
+    --e-5: 1.5rem; --e-6: 2rem; --e-7: 3rem; --e-8: 4.5rem;
+
+    /* Formas */
+    --r-1: 8px; --r-2: 12px; --r-3: 16px; --r-4: 22px; --r-pill: 999px;
+    --borde: 2px solid var(--noche);
+    --sombra: 4px 5px 0 var(--uva);
+    --sombra-chica: 3px 3px 0 var(--uva);
+    --ancho: 1200px;
+    --carpa-alto: 67px;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --rebote: cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* Faldón de la carpa: copia literal de la guía (tokens.css) */
+    --falda-borde: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='54' viewBox='0 0 56 54'%3E%3Cpath d='M0 45 C 10 46, 24 35, 28 26 C 32 35, 46 46, 56 45' fill='none' stroke='%23FFF1DC' stroke-opacity='.28' stroke-width='1.5'/%3E%3C/svg%3E");
+    --falda-borde-arriba: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='54' viewBox='0 0 56 54'%3E%3Cg transform='translate(0 54) scale(1 -1)'%3E%3Cpath d='M0 45 C 10 46, 24 35, 28 26 C 32 35, 46 46, 56 45' fill='none' stroke='%23FFF1DC' stroke-opacity='.28' stroke-width='1.5'/%3E%3C/g%3E%3C/svg%3E");
+    --falda-forma: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='54' viewBox='0 0 56 54'%3E%3Cpath d='M0 0 H56 V45 C 46 46, 32 35, 28 26 C 24 35, 10 46, 0 45 Z' fill='%23000'/%3E%3C/svg%3E");
+    --falda-forma-arriba: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='54' viewBox='0 0 56 54'%3E%3Cg transform='translate(0 54) scale(1 -1)'%3E%3Cpath d='M0 0 H56 V45 C 46 46, 32 35, 28 26 C 24 35, 10 46, 0 45 Z' fill='%23000'/%3E%3C/g%3E%3C/svg%3E");
+    /* En la carpa el faldón va más corto: mismo dibujo, sin la franja lisa de arriba */
+    --falda-forma-corta: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='34' viewBox='0 20 56 34'%3E%3Cpath d='M0 0 H56 V45 C 46 46, 32 35, 28 26 C 24 35, 10 46, 0 45 Z' fill='%23000'/%3E%3C/svg%3E");
+    --falda-borde-corta: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='34' viewBox='0 20 56 34'%3E%3Cpath d='M0 45 C 10 46, 24 35, 28 26 C 32 35, 46 46, 56 45' fill='none' stroke='%23FFF1DC' stroke-opacity='.28' stroke-width='1.5'/%3E%3C/svg%3E");
+    --velo: linear-gradient(rgb(13 9 25 / 0.55), rgb(13 9 25 / 0.55));
+    --baldosa: url("../img/azulejos-costenos.svg") 0 0 / 320px 160px, var(--noche);
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; font-synthesis: none; scroll-padding-top: calc(var(--carpa-alto) + 16px); }
+  body, h1, h2, h3, h4, p, figure, ul, ol, fieldset { margin: 0; }
+  ul[role="list"], ol[role="list"] { padding: 0; list-style: none; }
+  img, svg { display: block; max-width: 100%; height: auto; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  fieldset { border: 0; padding: 0; min-width: 0; }
+  [hidden] { display: none !important; }
+  /* pizza a tu gusto: todas las bandejas de ingredientes a la vista */
+  .tp.all .catpanel[hidden] { display: block !important; }
+}
+
+@layer base {
+  /* el cambio de página lo hace el telón (telon.js) */
+  body {
+    min-height: 100dvh; display: flex; flex-direction: column;
+    background: var(--noche); color: var(--texto);
+    font: 500 var(--t-1)/1.55 var(--f-texto);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  :focus-visible { outline: 3px solid var(--cian); outline-offset: 3px; border-radius: 6px; }
+  a { color: inherit; }
+  ::selection { background: var(--mango); color: var(--noche); }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    @view-transition { navigation: none; }
+  }
+}
+
+@layer layout {
+  .envoltura { width: min(100% - 2 * var(--e-4), var(--ancho)); margin-inline: auto; }
+  main { flex: 1; }
+  .seccion { padding-block: var(--e-7); }
+  .sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+}
+
+@layer components {
+  /* ---------- Letrero de picó: títulos ----------
+     Relleno de color, contorno crema y sombra uva en bloque. Sin brillo. */
+  .letrero {
+    font-family: var(--f-letrero); font-weight: 400; text-transform: uppercase; line-height: 0.98;
+    color: var(--n, var(--mango));
+    -webkit-text-stroke: 0.07em var(--crema); paint-order: stroke fill;
+    text-shadow: 0.06em 0.06em 0 var(--uva), 0.1em 0.1em 0 var(--uva);
+    letter-spacing: 0.01em;
+  }
+  /* Lilita plana: frases, botones, etiquetas */
+  .plana { font-family: var(--f-letrero); font-weight: 400; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.05; }
+
+  /* ---------- Carpa (barra de arriba) ---------- */
+  /* La carpa es UNA sola pieza de baldosa (::before) que cubre el menú y baja
+     hasta las ondas, recortada con --falda-forma; encima, el hilo crema (::after). */
+  .carpa {
+    position: sticky; top: 0; z-index: 40; isolation: isolate;
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .carpa::before, .carpa::after, .pie::before, .pie::after { content: ""; position: absolute; left: 0; right: 0; z-index: -1; pointer-events: none; }
+  .carpa::before {
+    top: 0; height: calc(100% + 34px);
+    background: linear-gradient(rgb(13 9 25 / 0.55), rgb(13 9 25 / 0.15) 70%, transparent), var(--velo), var(--baldosa);
+    -webkit-mask: linear-gradient(#000, #000) 0 0 / 100% calc(100% - 34px) no-repeat, var(--falda-forma-corta) 0 100% / 56px 34px repeat-x;
+    mask: linear-gradient(#000, #000) 0 0 / 100% calc(100% - 34px) no-repeat, var(--falda-forma-corta) 0 100% / 56px 34px repeat-x;
+  }
+  .carpa::after { top: 100%; height: 34px; background: var(--falda-borde-corta) 0 0 / 56px 34px repeat-x; }
+  /* los botones quedan al centro entre el borde de arriba y la línea del faldón */
+  .carpa__fila { display: flex; align-items: center; gap: var(--e-3); min-height: calc(var(--carpa-alto) - 15px); padding-top: 15px; padding-inline: max(var(--e-4), env(safe-area-inset-left)); }
+  /* el sello sobresale de la carpa y cuelga sobre el festón */
+  .sello {
+    position: relative; z-index: 2; align-self: flex-start; margin: -9px 0 -48px; overflow: hidden;
+    flex: none; display: block; width: 96px; height: 96px; border-radius: 50%;
+    background: var(--noche); border: 3px solid var(--crema); box-shadow: 5px 6px 0 var(--uva);
+    view-transition-name: sello; transition: transform 0.2s var(--ease);
+  }
+  .sello:hover { transform: rotate(-8deg) scale(1.05); }
+  .sello img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; padding: 0; }
+  .menu { flex: 1; min-width: 0; display: flex; align-items: center; gap: var(--e-2); overflow-x: auto; scrollbar-width: none; padding: 6px 4px 9px; }
+  .menu::-webkit-scrollbar { display: none; }
+  .menu a {
+    flex: none; text-decoration: none; color: var(--noche);
+    font: 400 0.95rem/1 var(--f-letrero); text-transform: uppercase; letter-spacing: 0.03em;
+    padding: 0.62rem 0.95rem 0.55rem; border-radius: var(--r-2);
+    background: color-mix(in srgb, var(--crema) 92%, var(--noche)); border: var(--borde); box-shadow: var(--sombra-chica);
+    transition: transform 0.15s var(--ease), background 0.15s;
+  }
+  .menu a:hover { background: var(--crema); transform: translateY(-2px); }
+  .menu a[aria-current="page"] { background: var(--mango); }
+  /* Carrito: un sello redondo como el del logo, colgado al otro lado de la carpa.
+     Adentro, el carrito de fritos; el total cuelga abajo como una placa.
+     Al agregar algo, el carrito rueda, giran las ruedas y salta el +1. */
+  .carrito-btn {
+    position: relative; z-index: 2; flex: none; align-self: flex-start; margin: -9px 0 -48px auto; cursor: pointer;
+    width: 96px; height: 96px; padding: 0; border-radius: 50%; display: grid; place-items: center;
+    background: radial-gradient(rgb(255 241 220 / 0.22) 2px, transparent 2.5px) 0 0 / 12px 12px, var(--mango);
+    border: 3px solid var(--crema); box-shadow: 0 0 0 2px var(--noche), 5px 6px 0 2px var(--uva);
+    transition: transform 0.2s var(--rebote);
+  }
+  .carrito-btn:hover { transform: rotate(8deg) scale(1.05); }
+  .carrito-btn:active { transform: scale(0.94); }
+  .carrito-btn__ico { display: grid; place-items: center; }
+  .carrito-btn__ico svg { width: 66px; height: 66px; overflow: visible; }
+  .carrito-btn__ico .rueda { transform-box: fill-box; transform-origin: center; }
+  .carrito-btn__ico .toldo { transform-box: fill-box; transform-origin: 50% 0; }
+  .carrito-btn__n {
+    position: absolute; top: -4px; left: -6px; display: grid; place-items: center; min-width: 30px; height: 30px; padding: 0 7px;
+    border-radius: var(--r-pill); background: var(--tomate); color: var(--crema); border: 2px solid var(--crema); font: 400 1rem/1 var(--f-letrero); rotate: -10deg;
+  }
+  .carrito-btn__tot {
+    position: absolute; left: 50%; bottom: -14px; translate: -50% 0; rotate: -4deg; white-space: nowrap;
+    padding: 0.28rem 0.6rem 0.22rem; border-radius: var(--r-1); background: var(--noche); color: var(--mango);
+    border: 2px solid var(--crema); font: 400 0.9rem/1 var(--f-letrero);
+  }
+  .carrito-btn:not(.lleno) .carrito-btn__tot, .carrito-btn:not(.lleno) .carrito-btn__n { display: none; }
+  .carrito-btn__mas { position: absolute; right: 2px; top: -8px; font: 400 1.2rem/1 var(--f-letrero); color: var(--mango); -webkit-text-stroke: 0.07em var(--noche); paint-order: stroke fill; opacity: 0; pointer-events: none; }
+  .carrito-btn.lleno .toldo { animation: toldo 3s ease-in-out infinite; }
+  .carrito-btn.brinca .carro { animation: rueda-carro 0.7s var(--ease); }
+  .carrito-btn.brinca .rueda { animation: gira-rueda 0.7s var(--ease); }
+  .carrito-btn.brinca .carrito-btn__mas { animation: mas-uno 0.8s var(--ease); }
+  .carrito-btn.brinca .carrito-btn__n { animation: globo 0.55s var(--rebote); }
+  @keyframes toldo { 0%, 84%, 100% { rotate: 0deg; } 90% { rotate: -6deg; } 95% { rotate: 4deg; } }
+  @keyframes rueda-carro { 35% { translate: 8px 0; } 70% { translate: -3px 0; } }
+  @keyframes gira-rueda { to { rotate: 360deg; } }
+  @keyframes mas-uno { 0% { opacity: 0; translate: 0 6px; } 25% { opacity: 1; } 100% { opacity: 0; translate: 0 -26px; } }
+  @keyframes globo { 40% { scale: 1.45; } }
+  .rebota { animation: brinca 0.5s var(--rebote); }
+  @media (max-width: 720px) {
+    .carpa__fila { flex-wrap: wrap; row-gap: 0; padding-top: 8px; }
+    .sello { width: 66px; height: 66px; margin: 4px 0; align-self: center; }
+    .carrito-btn { width: 66px; height: 66px; margin: 4px 0 4px auto; align-self: center; }
+    .carrito-btn__ico svg { width: 46px; height: 46px; }
+    .carrito-btn__tot { font-size: 0.78rem; bottom: -12px; }
+    .menu { order: 3; flex-basis: 100%; margin-inline: calc(-1 * var(--e-4)); padding-inline: var(--e-4); }
+    .carrito-btn { margin-left: auto; }
+  }
+
+  /* ---------- Botones ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; text-decoration: none; text-align: center;
+    font: 400 1rem/1 var(--f-letrero); text-transform: uppercase; letter-spacing: 0.03em;
+    padding: 0.85rem 1.3rem 0.75rem; border-radius: var(--r-2); border: var(--borde); color: var(--noche);
+    box-shadow: var(--sombra); transition: translate 0.15s var(--ease), box-shadow 0.15s var(--ease);
+  }
+  .btn:hover { translate: 0 -2px; box-shadow: 5px 7px 0 var(--uva); }
+  .btn:active { translate: 3px 4px; box-shadow: 0 0 0 var(--uva); }
+  .btn--primario { background: var(--mango); }
+  .btn--secundario { background: var(--crema); }
+  .btn--whatsapp { background: var(--lima); }
+  .btn--chico { font-size: 0.85rem; padding: 0.6rem 0.9rem 0.52rem; }
+  .btn--grande { font-size: 1.15rem; padding: 1rem 1.6rem 0.9rem; }
+  .btn:disabled, .btn[aria-disabled="true"] {
+    background: color-mix(in srgb, var(--crema) 22%, var(--noche)); color: color-mix(in srgb, var(--crema) 55%, var(--noche));
+    box-shadow: none; translate: none; cursor: not-allowed;
+  }
+  .btn-texto { background: none; border: 0; padding: 0.3rem 0; color: var(--texto-2); font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+  .btn-texto:hover { color: var(--crema); }
+
+  /* ---------- Segmento ---------- */
+  .segmento { display: flex; align-items: center; gap: 4px; padding: 5px; border-radius: var(--r-pill); background: var(--noche); border: 1.5px solid var(--linea); }
+  .segmento__label { flex: none; color: var(--texto-2); font-weight: 900; font-size: var(--t-0); padding: 0 0.5rem 0 0.6rem; }
+  .segmento__label small { display: block; font-weight: 700; color: var(--texto-3); }
+
+  /* ---------- Chips ---------- */
+  .chip {
+    display: inline-flex; align-items: center; gap: 0.4rem; font: 400 0.9rem/1 var(--f-letrero); text-transform: uppercase; letter-spacing: 0.03em;
+    padding: 0.55rem 0.9rem 0.48rem; border-radius: var(--r-pill); color: var(--crema); background: transparent;
+    border: 2px solid var(--linea-fuerte); transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .chip:hover { border-color: var(--mango); color: var(--mango); }
+  .chip[aria-pressed="true"], .chip.on { background: var(--mango); color: var(--noche); border-color: var(--noche); box-shadow: var(--sombra-chica); }
+
+  /* ---------- Contador ---------- */
+  .contador { display: inline-flex; align-items: center; gap: 0.15rem; padding: 0.2rem; border-radius: var(--r-pill); border: 2px solid var(--linea-fuerte); background: var(--noche); }
+  .contador button, .contador [role="button"] {
+    display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; border: 0;
+    background: var(--crema); color: var(--noche); font: 900 1.15rem/1 var(--f-texto); cursor: pointer; user-select: none;
+  }
+  .contador button:hover, .contador [role="button"]:hover { background: var(--mango); }
+  .contador > span, .contador > i, .contador > b { min-width: 2rem; text-align: center; font: 400 1.1rem/1 var(--f-letrero); font-style: normal; color: var(--crema); }
+
+  /* ---------- Precios ---------- */
+  .precio {
+    display: inline-block; font: 900 0.85rem/1 var(--f-texto); letter-spacing: 0.01em; font-variant-numeric: tabular-nums;
+    color: var(--mango); background: var(--noche); border-radius: var(--r-pill); padding: 0.38rem 0.7rem; border: 1px solid rgb(255 183 0 / 0.35);
+  }
+  .precio:empty { display: none; }
+  .precio--extra { color: var(--crema); border-color: var(--linea-fuerte); }
+  .total {
+    display: inline-flex; align-items: baseline; gap: 0.5rem; font: 400 2rem/1 var(--f-letrero); color: var(--noche);
+    background: var(--mango); border: var(--borde); border-radius: var(--r-2); padding: 0.55rem 1rem 0.45rem; box-shadow: var(--sombra);
+    font-variant-numeric: tabular-nums;
+  }
+  .total small { font: 900 0.7rem/1 var(--f-texto); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* ---------- Etiquetas ---------- */
+  .etiqueta { display: inline-block; font: 400 0.78rem/1 var(--f-letrero); text-transform: uppercase; letter-spacing: 0.04em; padding: 0.42rem 0.6rem 0.36rem; border-radius: var(--r-1); }
+  .etiqueta--promo { background: var(--tomate); color: var(--crema); }
+  .etiqueta--suave { border: 1.5px solid var(--linea-fuerte); color: var(--crema); }
+  .etiqueta--mango { background: var(--mango); color: var(--noche); }
+
+  /* ---------- Campos ---------- */
+  .campo { display: grid; gap: 0.4rem; }
+  .campo > span { font-weight: 900; color: var(--crema); font-size: var(--t-0); }
+  .campo > span i { font-style: normal; font-weight: 600; color: var(--texto-3); }
+  .campo input, .campo select, .campo textarea {
+    width: 100%; color: var(--crema); background: var(--noche); border: 1.5px solid var(--linea-fuerte); border-radius: 10px; padding: 0.75rem 0.85rem;
+  }
+  .campo input::placeholder { color: var(--texto-3); }
+  .campo input:focus, .campo select:focus, .campo textarea:focus { outline: none; border-color: var(--cian); box-shadow: 0 0 0 3px rgb(0 185 255 / 0.25); }
+  .campo.mal input { border-color: var(--tomate); box-shadow: 0 0 0 3px rgb(255 36 64 / 0.22); }
+
+  /* ---------- Tarjeta base ---------- */
+  .tarjeta { background: var(--sup-1); border: 1.5px solid var(--linea); border-radius: var(--r-3); }
+
+  /* ---------- Cenefa: línea decorativa de sección ---------- */
+  .cenefa { display: block; height: 10px; width: 120px; background: radial-gradient(circle at 5px 5px, var(--n, var(--mango)) 3px, transparent 3.5px) 0 0 / 14px 10px repeat-x; }
+
+  /* ---------- Pie ---------- */
+  .pie { position: relative; margin-top: calc(var(--e-8) + 54px); padding: var(--e-6) 0 calc(var(--e-6) + env(safe-area-inset-bottom, 0px)); isolation: isolate; text-align: center; }
+  /* El mismo faldón, con las puntas hacia arriba */
+  .pie::before {
+    top: -54px; bottom: 0; background: var(--velo), var(--baldosa);
+    -webkit-mask: var(--falda-forma-arriba) 0 0 / 56px 54px repeat-x, linear-gradient(#000, #000) 0 54px / 100% calc(100% - 54px) no-repeat;
+    mask: var(--falda-forma-arriba) 0 0 / 56px 54px repeat-x, linear-gradient(#000, #000) 0 54px / 100% calc(100% - 54px) no-repeat;
+  }
+  .pie::after { top: -54px; height: 54px; background: var(--falda-borde-arriba) 0 0 / 56px 54px repeat-x; }
+  .pie__logo { width: min(280px, 70vw); margin: 0 auto var(--e-3); }
+  .pie__lema { font: 400 var(--t-2)/1.1 var(--f-letrero); text-transform: uppercase; color: var(--crema); }
+  .pie__redes { display: flex; justify-content: center; gap: var(--e-3); margin: var(--e-5) 0; padding: 0; list-style: none; }
+  .pie__redes img { width: 22px; height: 22px; border-radius: 50%; }
+  .pie__meta { color: var(--texto-3); font-size: var(--t-0); }
+
+  /* ---------- Carrito (cajón) ---------- */
+  .velo { position: fixed; inset: 0; z-index: 60; background: rgb(13 9 25 / 0.72); opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+  .velo.on { opacity: 1; pointer-events: auto; }
+  .cajon {
+    position: fixed; top: 0; right: 0; bottom: 0; z-index: 61; width: min(420px, 100%);
+    display: flex; flex-direction: column; background: var(--sup-1); border-left: 2px solid var(--linea-fuerte);
+    padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+    transform: translateX(105%); transition: transform 0.3s var(--ease); visibility: hidden;
+  }
+  .cajon.on { transform: none; visibility: visible; }
+  .cajon__cab { display: flex; align-items: center; justify-content: space-between; gap: var(--e-3); padding: var(--e-4) var(--e-4) var(--e-3); border-bottom: 1px solid var(--linea); }
+  .cajon__cab h2 { font-size: var(--t-3); }
+  .cajon__items { flex: 1; overflow-y: auto; padding: var(--e-3) var(--e-4); display: grid; align-content: start; gap: var(--e-3); }
+  .cajon__vacio { text-align: center; color: var(--texto-2); padding: var(--e-7) var(--e-4); }
+  .cajon__vacio img { width: 84px; margin: 0 auto var(--e-3); opacity: 0.85; }
+  .linea-pedido { padding: var(--e-3) var(--e-4); border-radius: var(--r-3); background: var(--noche); border: 1.5px solid var(--linea); display: grid; gap: 0.45rem; }
+  .linea-pedido .fila { display: flex; align-items: center; justify-content: space-between; gap: var(--e-3); }
+  .linea-pedido .nm { font-weight: 900; }
+  .linea-pedido .pt { font-weight: 900; color: var(--mango); font-variant-numeric: tabular-nums; }
+  .linea-pedido .ln { color: var(--texto-2); font-size: var(--t-0); }
+  .cajon__pie { padding: var(--e-4); border-top: 1px solid var(--linea); display: grid; gap: var(--e-3); }
+  .cajon__total { display: flex; justify-content: space-between; align-items: baseline; font: 400 var(--t-3)/1 var(--f-letrero); }
+  .cajon__total span:first-child { font: 900 var(--t-0)/1 var(--f-texto); text-transform: uppercase; letter-spacing: 0.08em; color: var(--texto-2); }
+
+  /* ---------- Aviso (toast) ---------- */
+  .aviso {
+    position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom, 0px)); z-index: 70; translate: -50% 20px; opacity: 0; pointer-events: none;
+    background: var(--lima); color: var(--noche); font-weight: 900; padding: 0.7rem 1.1rem; border-radius: var(--r-pill); border: var(--borde); box-shadow: var(--sombra-chica);
+    transition: opacity 0.2s, translate 0.25s var(--rebote);
+  }
+  .aviso.on { opacity: 1; translate: -50% 0; }
+}
+
+@layer utilities {
+  .centro { text-align: center; }
+  .apilado > * + * { margin-top: var(--e-4); }
+}
+
+/* El sello cuelga sobre el contenido: en pantallas medianas se le deja espacio */
+@media (min-width: 721px) and (max-width: 1320px) { main#contenido::before { content: ""; display: block; height: 30px; } }
+
+/* ---------- Dos idiomas: el navegador decide (ver el script del <head>) ---------- */
+html[lang="en"] .es, html[lang="es"] .en { display: none !important; }
+
+/* ---------- Horario en el pie ---------- */
+.pie__horario { margin-top: var(--e-2); color: var(--texto-2); font-weight: 800; }
+
+/* ---------- Cartel de cerrado ----------
+   Un letrero con tubo de neón tomate alrededor (el brillo va en la forma, nunca en la letra). */
+.cartel-cerrado { width: min(440px, calc(100% - 32px)); padding: 0; margin: auto; border: 0; background: none; color: var(--crema); overflow: visible; }
+.cartel-cerrado::backdrop { background: rgb(13 9 25 / 0.82); backdrop-filter: blur(4px); }
+.cartel-cerrado[open] { animation: cartel-cuelga 0.6s var(--rebote); }
+@keyframes cartel-cuelga { from { opacity: 0; transform: translateY(-40px) rotate(-6deg); } }
+.cartel-cerrado__letrero {
+  position: relative; display: grid; justify-items: center; gap: var(--e-3); padding: var(--e-6) var(--e-5) var(--e-5); text-align: center;
+  background: radial-gradient(rgb(255 241 220 / 0.05) 2px, transparent 2.5px) 0 0 / 16px 16px, var(--sup-1);
+  border-radius: var(--r-4); border: 4px solid var(--tomate);
+  box-shadow: 0 0 0 3px var(--noche), 0 0 22px 4px rgb(255 36 64 / 0.55), inset 0 0 18px rgb(255 36 64 / 0.35), 8px 10px 0 6px var(--uva);
+  animation: tubo 4s steps(1) infinite;
+}
+@keyframes tubo { 0%, 100% { border-color: var(--tomate); } 91% { border-color: color-mix(in srgb, var(--tomate) 45%, var(--noche)); } 93% { border-color: var(--tomate); } }
+.cartel-cerrado h2 { font-size: clamp(2.8rem, 2rem + 4vw, 4rem); --n: var(--tomate); rotate: -3deg; }
+.cartel-cerrado__cuando { font-size: var(--t-2); color: var(--mango); }
+.cartel-cerrado__horario { color: var(--texto-2); max-width: 32ch; }
+.cartel-cerrado__redes { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--e-2); padding: 0; margin: var(--e-1) 0 0; list-style: none; }
+.cartel-cerrado__redes .btn { gap: var(--e-2); }
+.cartel-cerrado__redes img { width: 22px; height: 22px; }
+.cartel-cerrado__ir { width: 100%; margin-top: var(--e-2); }
+@media (prefers-reduced-motion: reduce) { .cartel-cerrado__letrero { animation: none; } }
+
+/* ---------- Aviso de abierto / cerrado en la carpa, junto al carrito ----------
+   Un letrero de neón (el brillo es del tubo, nunca de la letra). Con el mouse, el foco o un
+   toque se abre en el mismo recuadro y muestra el horario: los días, las horas y hoy marcado. */
+.cartelito { position: relative; z-index: 3; flex: none; align-self: center; height: 42px; margin-left: auto; display: flex; justify-content: flex-end; align-items: flex-start; }
+.carpa .cartelito + .carrito-btn { margin-left: var(--e-3); }
+.cartelito__caja {
+  --tubo: var(--cian);
+  display: grid; justify-items: center; gap: 0; cursor: pointer; text-align: center;
+  padding: 0.55rem 1rem 0.5rem; border-radius: var(--r-3); background: var(--noche); color: var(--crema);
+  border: 3px solid var(--tubo); box-shadow: 0 0 0 2px var(--noche), 0 0 14px 2px color-mix(in srgb, var(--tubo) 55%, transparent), inset 0 0 10px color-mix(in srgb, var(--tubo) 40%, transparent);
+  transition: padding 0.25s var(--ease);
+}
+html[data-abierto="no"] .cartelito__caja { --tubo: var(--tomate); }
+.cartelito__estado { display: inline-flex; align-items: center; gap: 0.5rem; font: 400 0.9rem/1.1 var(--f-letrero); text-transform: uppercase; letter-spacing: 0.03em; white-space: nowrap; }
+.cartelito__luz { width: 9px; height: 9px; border-radius: 50%; background: var(--tubo); box-shadow: 0 0 8px 1px var(--tubo); animation: luz 2.4s ease-in-out infinite; }
+@keyframes luz { 50% { opacity: 0.35; } }
+.cartelito__corto { display: none; }
+.cartelito__detalle { display: grid; justify-items: center; gap: 0.45rem; width: 0; min-width: 100%; max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.3s var(--ease), opacity 0.2s, margin 0.3s var(--ease); }
+.cartelito__caja:hover, .cartelito__caja:focus-visible, .cartelito__caja[aria-expanded="true"] { padding-bottom: 0.8rem; }
+.cartelito__caja:hover .cartelito__detalle, .cartelito__caja:focus-visible .cartelito__detalle, .cartelito__caja[aria-expanded="true"] .cartelito__detalle { width: 232px; max-height: 140px; opacity: 1; margin-top: 0.65rem; }
+.horario__dias { display: flex; gap: 4px; padding-top: 0.6rem; border-top: 1.5px dashed var(--linea-fuerte); }
+.horario__dia { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 50%; font: 400 0.8rem/1 var(--f-letrero); color: var(--texto-3); border: 1.5px solid var(--linea); }
+.horario__dia.abre { color: var(--crema); border-color: var(--tubo); }
+.horario__dia.hoy { background: var(--mango); color: var(--noche); border-color: var(--noche); box-shadow: 2px 2px 0 var(--uva); }
+.horario__horas { font: 400 1.25rem/1 var(--f-letrero); color: var(--mango); letter-spacing: 0.02em; }
+.horario__zona { font: 700 0.75rem/1.2 var(--f-texto); color: var(--texto-2); text-transform: none; letter-spacing: 0; }
+@media (max-width: 720px) {
+  /* en celular se abre por encima, sin empujar el carrito */
+  .cartelito { height: 38px; width: 112px; }
+  .cartelito__caja { position: absolute; top: 0; right: 0; min-width: 100%; }
+  .cartelito__caja { padding: 0.45rem 0.75rem 0.4rem; }
+  .cartelito__largo { display: none; }
+  .cartelito__corto { display: inline; }
+  .cartelito__caja:hover .cartelito__detalle, .cartelito__caja:focus-visible .cartelito__detalle, .cartelito__caja[aria-expanded="true"] .cartelito__detalle { width: 210px; }
+}
+@media (max-width: 1100px) and (min-width: 721px) { .cartelito__largo { display: none; } .cartelito__corto { display: inline; } }
+@media (prefers-reduced-motion: reduce) { .cartelito__luz { animation: none; } }
+
+/* ---------- Telón entre páginas: la carpa baja con su faldón, cubre todo y vuelve a subir ---------- */
+html.telon body::after, html.telon-baja body::after {
+  content: ""; position: fixed; left: 0; right: 0; top: 0; height: calc(100vh + 54px); z-index: 9999; pointer-events: none;
+  background: url("../img/logo-principal.png") center calc(50% - 27px) / min(360px, 72vw) auto no-repeat, var(--velo), var(--baldosa);
+  -webkit-mask: linear-gradient(#000, #000) 0 0 / 100% calc(100% - 54px) no-repeat, var(--falda-forma) 0 100% / 56px 54px repeat-x;
+  mask: linear-gradient(#000, #000) 0 0 / 100% calc(100% - 54px) no-repeat, var(--falda-forma) 0 100% / 56px 54px repeat-x;
+  translate: 0 0; will-change: translate;
+}
+html.telon-baja body::after { animation: telon-baja 0.9s cubic-bezier(0.65, 0, 0.35, 1) both; }
+html.telon.telon-sube body::after { animation: telon-sube 1.1s cubic-bezier(0.65, 0, 0.35, 1) both; }
+@keyframes telon-baja { from { translate: 0 -100%; } to { translate: 0 0; } }
+@keyframes telon-sube { from { translate: 0 0; } to { translate: 0 -100%; } }
