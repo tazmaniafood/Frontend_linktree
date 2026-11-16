@@ -259,3 +259,4 @@ html[data-abierto="no"] .estado { --tubo: var(--tomate); }
   .col--izq { gap: 8px; }
 }
 @media (orientation: landscape) and (max-height: 560px) and (max-width: 780px) { .red { font-size: 0.66rem; letter-spacing: 0.01em; } .col--izq { padding-inline: 4px; } }
+@media (orientation: landscape) and (max-height: 560px) { .tree__bio { white-space: nowrap; font-size: clamp(0.62rem, 1.7vw, 0.95rem) !important; line-height: 1.35; } }
