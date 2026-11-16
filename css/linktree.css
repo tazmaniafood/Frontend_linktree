@@ -14,7 +14,7 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
 @keyframes baja { from { translate: 0 -100%; } }
 
 /* ---------- Columna ---------- */
-.tree { flex: none; height: 100dvh; grid-template-rows: auto auto auto minmax(0, 1.4fr) minmax(0, 3fr) auto; align-content: stretch; padding-bottom: 44px; --g: clamp(6px, 1.6vh, 16px); position: relative; z-index: 1; width: min(100% - 2 * var(--e-4), 460px); margin: 0 auto; padding: var(--g) 0 44px; display: grid; justify-items: center; gap: var(--g); text-align: center; }
+.tree { flex: none; height: 100dvh; grid-template-rows: auto auto auto minmax(0, 1.75fr) minmax(0, 3fr) auto; align-content: stretch; padding-bottom: 44px; --g: clamp(6px, 1.6vh, 16px); position: relative; z-index: 1; width: min(100% - 2 * var(--e-4), 460px); margin: 0 auto; padding: var(--g) 0 44px; display: grid; justify-items: center; gap: var(--g); text-align: center; }
 .tree > * { animation: sube 0.5s var(--ease) both; }
 .tree > :nth-child(1) { animation: logo 0.7s var(--rebote) 0.5s both; }
 .tree > :nth-child(2) { animation-delay: 0.75s; } .tree > :nth-child(3) { animation-delay: 0.82s; } .tree > :nth-child(4) { animation-delay: 0.9s; }
@@ -118,11 +118,26 @@ html[data-abierto="no"] .estado { --tubo: var(--tomate); }
 
 @media (max-height: 620px) { .enlace__tx small { display: none; } .tree__bio br + span { display: none; } }
 @media (prefers-reduced-motion: reduce) { body::before, .tree > *, .estado__luz, .destacado__foto img { animation: none; } }
-.destacado small { display: none; }
-.destacado { max-height: 190px; align-self: center; }
+.destacado { max-height: 210px; align-self: center; }
+.destacado small { font-size: clamp(0.72rem, 1.5vh, 0.85rem); }
 
 /* Los otros canales se reparten el alto que sobra: cada botón crece por igual */
-.tree > .grupo:first-of-type { height: 100%; grid-template-rows: minmax(0, 1fr); }
-.tree > .grupo:first-of-type .lista { height: 100%; grid-auto-rows: minmax(0, 1fr); align-content: stretch; }
-.tree > .grupo:first-of-type .enlace { height: 100%; }
+.tree > .grupo--pedir { height: 100%; grid-template-rows: minmax(0, 1fr); }
+.tree > .grupo--pedir .lista { height: 100%; grid-auto-rows: minmax(0, 1fr); align-content: stretch; }
+.tree > .grupo--pedir .enlace { height: 100%; }
 .red { padding-block: clamp(8px, 1.8vh, 18px); }
+
+@media (max-height: 560px) { .destacado small { display: none; } }
+/* Celular acostado: dos columnas. Izquierda la marca y las redes, derecha la página web y los canales */
+@media (orientation: landscape) and (max-height: 560px) {
+  .tree { width: min(100% - 2 * var(--e-5), 900px); grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); column-gap: var(--e-6);
+    grid-template-rows: auto auto minmax(0, 1fr) auto; grid-template-areas: "logo dest" "bio dest" "estado pedir" "redes pedir"; align-items: center; }
+  .tree__logo { grid-area: logo; height: clamp(54px, 17vh, 110px); }
+  .tree__bio { grid-area: bio; }
+  .fila-estado { grid-area: estado; align-self: start; }
+  .destacado { grid-area: dest; max-height: none; height: 100%; }
+  .grupo--pedir { grid-area: pedir; }
+  .grupo--redes { grid-area: redes; align-self: end; }
+  .enlace__tx small { display: none; }
+  .tree__bio br + span { display: none; }
+}
