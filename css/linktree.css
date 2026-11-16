@@ -14,7 +14,7 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
 @keyframes baja { from { translate: 0 -100%; } }
 
 /* ---------- Columna ---------- */
-.tree { flex: none; height: 100dvh; grid-template-rows: auto auto auto clamp(104px, 17vh, 168px) minmax(0, 1fr) auto; align-content: stretch; padding-bottom: 44px; --g: clamp(6px, 1.6vh, 16px); position: relative; z-index: 1; width: min(100% - 2 * var(--e-4), 460px); margin: 0 auto; padding: var(--g) 0 44px; display: grid; justify-items: center; gap: var(--g); text-align: center; }
+.tree { flex: none; height: 100dvh; grid-template-rows: auto auto auto clamp(92px, 13vh, 128px) minmax(0, 1fr) auto; align-content: stretch; padding-bottom: 44px; --g: clamp(6px, 1.6vh, 16px); position: relative; z-index: 1; width: min(100% - 2 * var(--e-4), 460px); margin: 0 auto; padding: var(--g) 0 44px; display: grid; justify-items: center; gap: var(--g); text-align: center; }
 .tree > * { animation: sube 0.5s var(--ease) both; }
 .tree > :nth-child(1) { animation: logo 0.7s var(--rebote) 0.5s both; }
 .tree > :nth-child(2) { animation-delay: 0.75s; } .tree > :nth-child(3) { animation-delay: 0.82s; } .tree > :nth-child(4) { animation-delay: 0.9s; }
@@ -61,7 +61,7 @@ html[data-abierto="no"] .estado { --tubo: var(--tomate); }
 .destacado:active { translate: 4px 5px; box-shadow: 0 0 0 var(--uva); }
 .destacado__tx { position: relative; z-index: 1; display: grid; justify-items: start; gap: var(--e-2); }
 .destacado__sello { background: var(--tomate); color: var(--crema); border: 2px solid var(--noche); rotate: -3deg; }
-.destacado .letrero { --n: var(--crema); font-size: clamp(1.4rem, min(4.4vh, 1.2rem + 2vw), 2.3rem); }
+.destacado .letrero { --n: var(--crema); font-size: clamp(1.3rem, min(3.4vh, 1rem + 1.6vw), 1.9rem); }
 .destacado small { font-weight: 800; font-size: var(--t-0); max-width: 24ch; }
 .destacado__foto { position: absolute; right: -46px; top: 50%; translate: 0 -50%; width: min(190px, 92%); aspect-ratio: 1; height: auto; max-height: 120%; border-radius: 50%; padding: 6px; background: var(--noche); box-shadow: 0 0 0 4px var(--crema); }
 .destacado__foto img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; animation: gira 40s linear infinite; }
@@ -118,7 +118,7 @@ html[data-abierto="no"] .estado { --tubo: var(--tomate); }
 
 @media (max-height: 620px) { .enlace__tx small { display: none; } .tree__bio br + span { display: none; } }
 @media (prefers-reduced-motion: reduce) { body::before, .tree > *, .estado__luz, .destacado__foto img { animation: none; } }
-@media (max-height: 880px) { .destacado small { display: none; } }
+.destacado small { display: none; }
 
 /* Los otros canales se reparten el alto que sobra: cada botón crece por igual */
 .tree > .grupo:first-of-type { height: 100%; grid-template-rows: minmax(0, 1fr); }
