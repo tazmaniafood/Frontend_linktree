@@ -153,3 +153,20 @@ html[data-abierto="no"] .estado { --tubo: var(--tomate); }
   .grupo--pedir .enlace { min-height: clamp(56px, 13vh, 74px); }
   .destacado { min-height: clamp(96px, 22vh, 130px); }
 }
+/* De pie: nada se estira. La página web mide lo mismo que WhatsApp y todo queda centrado en alto */
+@media not ((orientation: landscape) and (max-height: 560px)) {
+  .tree { height: auto; grid-template-rows: none; align-content: center; }
+  .destacado, .grupo--pedir .enlace { height: clamp(62px, 8.6vh, 84px); min-height: 0; max-height: none; }
+  .grupo--pedir, .tree > .grupo--pedir { height: auto; }
+  .grupo--pedir .lista, .tree > .grupo--pedir .lista { height: auto; grid-auto-rows: auto; }
+  .destacado { grid-template-columns: 1fr 96px; padding-block: 0; }
+  .destacado__tx { gap: 4px; }
+  .destacado__sello { font-size: 0.62rem; padding: 0.3rem 0.5rem 0.25rem; }
+  .destacado .letrero { font-size: clamp(1.1rem, min(2.6vh, 5.4vw), 1.5rem); white-space: nowrap; }
+  .destacado small { display: none; }
+  .destacado__foto { width: 130px; right: -40px; }
+  .destacado__flecha { width: 34px; height: 34px; right: 10px; bottom: 50%; translate: 0 50%; font-size: 1.2rem; }
+  .red { padding-block: clamp(10px, 1.8vh, 16px); }
+}
+
+@media (max-width: 360px) { .estado__fila { white-space: nowrap; font-size: 0.78rem; } }
